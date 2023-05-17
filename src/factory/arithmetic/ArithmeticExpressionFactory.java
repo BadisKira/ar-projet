@@ -10,6 +10,6 @@ public class ArithmeticExpressionFactory implements ExpressionFactory {
      */
     @Override
     public Expression createExpression() {
-        return null;
+        return new ArithmeticExpression();
     }
 }

@@ -12,6 +12,6 @@ public class RationalExpressionFactory implements ExpressionFactory {
 
     @Override
     public Expression createExpression() {
-        return null;
+        return new RationalExpression();
     }
 }

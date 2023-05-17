@@ -9,7 +9,7 @@ public class OperateurUnaire implements Expression {
     private Expression operand1;
     private char operateur;
     public OperateurUnaire(char operateur,Expression operand1){
-        if(operateur != '-'){
+        if(operateur != '~'){
             throw new UnsupportedOperationException("Unsupported operation : " + operateur);
         }
         this.operateur = operateur;
@@ -20,7 +20,7 @@ public class OperateurUnaire implements Expression {
     }
     public OperateurUnaire(){}
     public void setOperateur(char c){
-        if(c != '-'){
+        if(c != '~'){
             throw new UnsupportedOperationException("Unsupported operation : " + operateur);
         }
         operateur = c;
@@ -30,6 +30,6 @@ public class OperateurUnaire implements Expression {
     }
     @Override
     public double evaluate() {
-        return 0;
+        return -operand1.evaluate();
     }
 }
