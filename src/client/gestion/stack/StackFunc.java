@@ -1,4 +1,4 @@
-package client.gestion.stack;
+/*package client.gestion.stack;
 
 import factory.Expression;
 import factory.function.FunctionExpression;
@@ -16,3 +16,4 @@ public class StackFunc implements StackTypeExpression{
 
     }
 }
+*/

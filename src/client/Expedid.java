@@ -37,11 +37,8 @@ public class Expedid {
         while (op_stack != QUITTER ){
             System.out.print("> ");
             op_stack = sc.nextLine();
-
-
         }
-
-    } ;
+    }
 
 
     public static  Expression createExpression(String type) {

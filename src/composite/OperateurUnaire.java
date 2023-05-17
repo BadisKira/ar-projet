@@ -2,20 +2,20 @@ package composite;
 
 import factory.Expression;
 
-public class OperateurUnaire implements Expression {
+public class OperateurUnaire implements Expression<Double> {
     /**
      * Composite 2
      **/
-    private Expression operand1;
+    private Expression<Double> operand1;
     private char operateur;
-    public OperateurUnaire(char operateur,Expression operand1){
+    public OperateurUnaire(char operateur,Expression<Double> operand1){
         if(operateur != '~'){
             throw new UnsupportedOperationException("Unsupported operation : " + operateur);
         }
         this.operateur = operateur;
         this.operand1 = operand1;
     }
-    public OperateurUnaire(Expression operand1){
+    public OperateurUnaire(Expression<Double> operand1){
         this.operand1 = operand1;
     }
     public OperateurUnaire(){}
@@ -25,11 +25,11 @@ public class OperateurUnaire implements Expression {
         }
         operateur = c;
     }
-    public void setOperand(Expression exp){
+    public void setOperand(Expression<Double> exp){
         operand1 = exp;
     }
     @Override
-    public double evaluate() {
+    public Double evaluate() {
         return -operand1.evaluate();
     }
 }

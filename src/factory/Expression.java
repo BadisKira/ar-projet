@@ -1,11 +1,11 @@
 package factory;
 
-public interface Expression {
+public interface Expression<T> {
 
     /**
      * Abstract product
      * **/
 
-    double evaluate();
+    T evaluate();
     //void accept(ExpressionVisitor visitor);
 }

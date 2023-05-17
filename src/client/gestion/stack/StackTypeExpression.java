@@ -5,5 +5,5 @@ import factory.Expression;
 import java.util.Stack;
 
 public interface StackTypeExpression {
-    public void in() ;
+    public void in(String input);
 }

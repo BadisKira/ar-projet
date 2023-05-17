@@ -2,12 +2,12 @@ package composite;
 
 import factory.Expression;
 
-public class OperateurBinaire implements Expression {
+public class OperateurBinaire implements BinaryOperator<Double> {
     /**
      * Composite 1
      **/
-    private Expression operand1;
-    private Expression operand2;
+    private Expression<Double> operand1;
+    private Expression<Double> operand2;
     private char operateur;
 
     public OperateurBinaire(Expression operand1, Expression operand2, char operateur){
@@ -17,17 +17,17 @@ public class OperateurBinaire implements Expression {
     }
     public OperateurBinaire(){}
 
-    public void setOperateur(char c){
+    public void setOperator(char c){
         operateur = c;
     }
-    public void setOperand1(Expression exp){
+    public void setOperand1(Expression<Double> exp){
         operand1 = exp;
     }
-    public void setOperand2(Expression exp){
+    public void setOperand2(Expression<Double> exp){
         operand2 = exp;
     }
     @Override
-    public double evaluate() {
+    public Double evaluate() {
         double leftResult = operand1.evaluate();
         double rightResult = operand2.evaluate();
         switch (operateur) {

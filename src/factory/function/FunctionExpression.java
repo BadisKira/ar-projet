@@ -5,7 +5,7 @@ import factory.Expression;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FunctionExpression implements Expression {
+public class FunctionExpression implements Expression<Double> {
     private List<Expression> children;
     public FunctionExpression() {
         children = new ArrayList<>();
@@ -19,8 +19,8 @@ public class FunctionExpression implements Expression {
         children.remove(expression);
     }
 
-    public double evaluate() {
-        return 0;
+    public Double evaluate() {
+        return 0.0;
     }
 
     public String toString() {
