@@ -1,6 +1,10 @@
 package stack;
 
 import expression.RationalExpression;
+import expression.operators.OperatorBinaryArith;
+import expression.operators.OperatorBinaryRat;
+import expression.operators.OperatorUnaryArith;
+import expression.operators.OperatorUnaryRat;
 import factory.ExpressionFactory;
 import factory.rational.RationalExpressionFactory;
 
@@ -8,9 +12,10 @@ import java.util.Stack;
 
 public class RationalStack implements ExpressionStack<RationalExpression>{
     private Stack<RationalExpression> expressionStack;
-    private ExpressionFactory expressionFactory ;
+    private RationalExpressionFactory expressionFactory ;
+    private final String FORMAT_RATIONAL = "[a-z1]+" ;
     public RationalStack(){
-        expressionStack = new Stack<RationalExpression>();
+        expressionStack = new Stack<>();
         expressionFactory = new RationalExpressionFactory();
     }
     @Override
@@ -19,9 +24,40 @@ public class RationalStack implements ExpressionStack<RationalExpression>{
     }
 
     @Override
-    public void input(String string) {
+    public void input(String strExp) {
         //ToDo : create expression,pop element...
-         expressionFactory.createExpression(string) ;
+
+        if(OperatorUnaryRat.isUnaryOperator(strExp) ){
+            if(this.expressionStack.size() >= 1) {
+                addExpression(expressionFactory.createUnaryExpression(
+                        strExp.charAt(0),this.expressionStack.pop())
+                );
+            }else {
+                System.out.println("Invalid operator. Expected a constant");
+            }
+        }
+        if(OperatorBinaryRat.isBinaryOperator(strExp) ){
+            if(this.expressionStack.size() >= 2 ){
+                addExpression(expressionFactory.createBinaryExpression(
+                        this.expressionStack.pop(),
+                        strExp.charAt(0),
+                        this.expressionStack.pop())
+                );
+            }else {
+                System.out.println("Invalid operator. Expected a constant or a unary operator");
+            }
+        }
+
+        if(strExp.matches(FORMAT_RATIONAL)){
+            if(strExp.length() > 20) {
+                    expressionFactory.createConstExpression(strExp) ;
+            }else {
+                System.out.println("Error: The input is too long (max 20).");
+            }
+        }else {
+            System.out.println("Error: The input does not match the format of constants.");
+        }
+
     }
 
     @Override

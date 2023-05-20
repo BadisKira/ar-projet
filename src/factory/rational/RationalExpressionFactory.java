@@ -1,6 +1,7 @@
 package factory.rational;
 
 import expression.RationalConst;
+import expression.RationalExpression;
 import factory.Expression;
 import factory.ExpressionFactory;
 
@@ -12,7 +13,7 @@ public class RationalExpressionFactory implements ExpressionFactory {
      * */
 
     @Override
-    public Expression createConstExpression(String value) {
+    public RationalExpression createConstExpression(String value) {
         return new RationalConst(value);
     }
 
@@ -23,7 +24,7 @@ public class RationalExpressionFactory implements ExpressionFactory {
      * @return
      */
     @Override
-    public Expression createBinaryExpression(Expression exp1, char operator, Expression exp2) {
+    public RationalExpression createBinaryExpression(Expression exp1, char operator, Expression exp2) {
         return null;
     }
 
@@ -33,7 +34,7 @@ public class RationalExpressionFactory implements ExpressionFactory {
      * @return
      */
     @Override
-    public Expression createUnaryExpression(char operator, Expression expression) {
+    public RationalExpression createUnaryExpression(char operator, Expression expression) {
         return null;
     }
 }

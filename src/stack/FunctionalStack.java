@@ -1,12 +1,13 @@
 package stack;
 
+import expression.FunctionalExpression;
 import factory.Expression;
 import factory.ExpressionFactory;
 import factory.function.FunctionalExpressionFactory;
 
 import java.util.Stack;
 
-public class FunctionalStack implements ExpressionStack{
+public class FunctionalStack  implements ExpressionStack{
 
     private Stack<FunctionalExpression> expressionStack;
     private ExpressionFactory expressionFactory ;

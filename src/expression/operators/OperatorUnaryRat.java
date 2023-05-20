@@ -16,6 +16,15 @@ public enum OperatorUnaryRat {
         return symbol;
     }
 
+    public static boolean isUnaryOperator(String input) {
+        for (OperatorUnaryArith operator : OperatorUnaryArith.values()) {
+            if (operator.getChar() == input.charAt(0)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<String> calculate(RationalExpression exp){
         List<String> words;
         switch(this){

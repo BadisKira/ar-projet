@@ -17,6 +17,17 @@ public enum OperatorBinaryRat {
         return symbol;
     }
 
+    public static boolean isBinaryOperator(String input) {
+        for (OperatorBinaryArith operator : OperatorBinaryArith.values()) {
+            if (operator.getChar() == input.charAt(0)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
     public List<String> calculate(RationalExpression exp1, RationalExpression exp2){
         List<String> words;
         switch(this){

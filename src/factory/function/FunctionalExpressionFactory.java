@@ -1,9 +1,12 @@
 package factory.function;
 
+import expression.ArithmeticExpression;
+import expression.FunctionalExpression;
 import factory.Expression;
 import factory.ExpressionFactory;
+import factory.arithmetic.ArithmeticExpressionFactory;
 
-public class FunctionalExpressionFactory implements ExpressionFactory {
+public class FunctionalExpressionFactory extends ArithmeticExpressionFactory implements ExpressionFactory {
 
 
 
@@ -15,8 +18,8 @@ public class FunctionalExpressionFactory implements ExpressionFactory {
      * @param value
      */
     @Override
-    public Expression createConstExpression(String value) {
-        return null;
+    public ArithmeticExpression createConstExpression(String value) {
+        return super.createConstExpression(value) ;
     }
 
     /**
@@ -26,7 +29,7 @@ public class FunctionalExpressionFactory implements ExpressionFactory {
      * @return
      */
     @Override
-    public Expression createBinaryExpression(Expression exp1, char operator, Expression exp2) {
+    public ArithmeticExpression createBinaryExpression(Expression exp1, char operator, Expression exp2) {
         return null;
     }
 
@@ -36,7 +39,11 @@ public class FunctionalExpressionFactory implements ExpressionFactory {
      * @return
      */
     @Override
-    public Expression createUnaryExpression(char operator, Expression expression) {
+    public ArithmeticExpression createUnaryExpression(char operator, Expression expression) {
         return null;
+    }
+
+    public FunctionalExpression createVariableExpression(String value) {
+        return null   ;
     }
 }
