@@ -12,8 +12,7 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
     private Stack<ArithmeticExpression> expressionStack;
     private ArithmeticExpressionFactory expressionFactory ;
 
-    double constant  ;
-    char operator ;
+
 
     public ArithmeticStack(){
         expressionStack = new Stack<>();
@@ -36,8 +35,10 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
                  addExpression(expressionFactory.createUnaryExpression(
                          strExp.charAt(0),
                          this.expressionStack.pop()  ));
+                 return;
              }else {
                  System.out.println("Invalid operator. Expected a constant");
+                 return;
              }
          }
         if(OperatorBinaryArith.isBinaryOperator(strExp) ){
@@ -47,17 +48,30 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
                          strExp.charAt(0),
                          this.expressionStack.pop())
                  );
+                 return;
              }else {
                  System.out.println("Invalid operator. Expected a constant or a unary operator");
+                 return;
              }
         }
-        try {
-            constant = Double.parseDouble(strExp);
+
+        if(isDouble(strExp)) {
             addExpression(expressionFactory.createConstExpression(strExp)) ;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid value. Expected a double.");
+            return;
+        }else {
+            System.out.println("Invalid value. Expected a double.");
+            return;
         }
-      //
+
+    }
+
+    public  boolean isDouble(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
