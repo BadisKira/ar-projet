@@ -1,13 +1,17 @@
 package stack;
 
 import expression.RationalExpression;
+import factory.ExpressionFactory;
+import factory.rational.RationalExpressionFactory;
 
 import java.util.Stack;
 
 public class RationalStack implements ExpressionStack<RationalExpression>{
     private Stack<RationalExpression> expressionStack;
+    private ExpressionFactory expressionFactory ;
     public RationalStack(){
         expressionStack = new Stack<RationalExpression>();
+        expressionFactory = new RationalExpressionFactory();
     }
     @Override
     public void addExpression(RationalExpression expression) {
@@ -17,6 +21,7 @@ public class RationalStack implements ExpressionStack<RationalExpression>{
     @Override
     public void input(String string) {
         //ToDo : create expression,pop element...
+         expressionFactory.createExpression(string) ;
     }
 
     @Override

@@ -3,8 +3,12 @@ package client;
 import factory.Expression;
 import factory.ExpressionFactory;
 import factory.arithmetic.ArithmeticExpressionFactory;
-import factory.function.FunctionExpressionFactory;
+import factory.function.FunctionalExpressionFactory;
 import factory.rational.RationalExpressionFactory;
+import stack.ArithmeticStack;
+import stack.ExpressionStack;
+import stack.FunctionalStack;
+import stack.RationalStack;
 
 import java.util.Scanner;
 import java.util.Stack;
@@ -15,13 +19,7 @@ public  class Expedid {
     private static final String SAVE_COMMAND = "!save";
     private static final String LOAD_COMMAND = "!load";
     private static final String TYPE_COMMAND = "!type";
-
-    private static Stack<Object> pile = new Stack<>();
-
-    private static ExpressionFactory expressionFactory ;
-    private static Expression expression ;
-
-
+    private static ExpressionStack expressionStack = null ;
 
     public static void run() {
         System.out.println("Bonjour, veuillez choisir le type d'expression :");
@@ -41,10 +39,11 @@ public  class Expedid {
             } else if (input.startsWith(TYPE_COMMAND)) {
                 handleTypeCommand(input);
             } else {
-                if(expression == null)
+                if(expressionStack == null)
                     handleInputExpression(input);
 
-                handleConstructExpression() ;
+                handleStackExpression(input) ;
+
             }
         }
     }
@@ -69,16 +68,14 @@ public  class Expedid {
     private static void handleInputExpression(String type) {
         switch (type) {
             case "arith":
-                expressionFactory = new ArithmeticExpressionFactory() ;
-                expression = expressionFactory.createExpression() ;
+                expressionStack =  new ArithmeticStack() ;
+                // stack
                 break;
             case "function":
-                expressionFactory = new FunctionExpressionFactory() ;
-                expression = expressionFactory.createExpression() ;
+                expressionStack =  new FunctionalStack() ;
                 break;
             case "rational":
-                expressionFactory = new RationalExpressionFactory() ;
-                expression = expressionFactory.createExpression() ;
+                expressionStack =  new RationalStack() ;
                 break;
             default:
                 System.out.println("Type d'expression inexistant : " + type);
@@ -103,8 +100,12 @@ public  class Expedid {
     }
 
 
-    private static void handleConstructExpression() {
-        System.out.println("nous buildons maintenant l'expresssion a utiliser");
+    private static void handleStackExpression(String input) {
+        // System.out.println("nous buildons maintenant l'expresssion a utiliser");
+        /**
+         * Input of user know
+         * */
+        expressionStack.input(input);
     }
 
 

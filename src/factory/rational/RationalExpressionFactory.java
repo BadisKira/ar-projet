@@ -1,5 +1,6 @@
 package factory.rational;
 
+import expression.RationalConst;
 import factory.Expression;
 import factory.ExpressionFactory;
 
@@ -11,8 +12,8 @@ public class RationalExpressionFactory implements ExpressionFactory {
      * */
 
     @Override
-    public Expression createExpression() {
-        return new RationalExpression();
+    public Expression createConstExpression(String value) {
+        return new RationalConst(value);
     }
 
     /**

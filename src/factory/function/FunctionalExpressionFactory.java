@@ -3,13 +3,20 @@ package factory.function;
 import factory.Expression;
 import factory.ExpressionFactory;
 
-public class FunctionExpressionFactory implements ExpressionFactory {
+public class FunctionalExpressionFactory implements ExpressionFactory {
+
+
+
+
+
     /**
-     * Concrete Creator
+     * Creator
+     *
+     * @param value
      */
     @Override
-    public Expression createExpression() {
-        return new FunctionExpression();
+    public Expression createConstExpression(String value) {
+        return null;
     }
 
     /**
