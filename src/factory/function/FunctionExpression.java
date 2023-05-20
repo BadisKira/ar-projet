@@ -5,7 +5,7 @@ import factory.Expression;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FunctionExpression implements Expression<Double> {
+public class FunctionExpression implements Expression {
     private List<Expression> children;
     public FunctionExpression() {
         children = new ArrayList<>();

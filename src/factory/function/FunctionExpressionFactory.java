@@ -11,4 +11,14 @@ public class FunctionExpressionFactory implements ExpressionFactory {
     public Expression createExpression() {
         return new FunctionExpression();
     }
+
+    @Override
+    public Expression createBinaryExpression(Expression exp1, char operator, Expression exp2) {
+        return null;
+    }
+
+    @Override
+    public Expression createUnaryExpression(char operator, Expression expression) {
+        return null;
+    }
 }

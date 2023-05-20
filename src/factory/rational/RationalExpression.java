@@ -2,12 +2,8 @@ package factory.rational;
 
 import factory.Expression;
 
-public class RationalExpression implements Expression<String> {
+public class RationalExpression implements Expression {
     /**
      * Concrete Product
      **/
-    @Override
-    public String evaluate() {
-        return "";
-    }
 }
