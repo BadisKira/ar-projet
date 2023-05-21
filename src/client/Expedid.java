@@ -15,10 +15,7 @@ public  class Expedid {
     private static final String SAVE_COMMAND = "!save";
     private static final String LOAD_COMMAND = "!load";
     private static final String TYPE_COMMAND = "!type";
-
     private static final String EMPTY_COMMAND = "";
-
-
 
     private static ExpressionStack expressionStack = null ;
 
@@ -49,11 +46,13 @@ public  class Expedid {
             } else if (input.startsWith(TYPE_COMMAND)) {
                 handleTypeCommand(input);
             } else {
-                if(expressionStack == null)
+                if(expressionStack == null){
                     handleInputExpression(input);
-                else
-                    handleStackExpression(input) ;
-
+                }
+                else{
+                    handleStackExpression(input);
+                    System.out.println(expressionStack.toString());
+                }
             }
         }
     }
@@ -107,10 +106,6 @@ public  class Expedid {
         System.out.println("arith    : Arithmetic expression");
         System.out.println("function : Functional expression");
         System.out.println("rational : Rational expression");
-
-
-
-
     }
 
 
@@ -118,7 +113,4 @@ public  class Expedid {
         // System.out.println("nous buildons maintenant l'expresssion a utiliser");
         expressionStack.input(input);
     }
-
-
-
 }

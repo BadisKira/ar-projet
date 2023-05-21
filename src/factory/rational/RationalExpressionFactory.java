@@ -1,11 +1,17 @@
 package factory.rational;
 
+import expression.RationalBinaryOperation;
 import expression.RationalConst;
 import expression.RationalExpression;
+import expression.RationalUnaryOperation;
+import expression.operators.OperatorBinaryArith;
+import expression.operators.OperatorBinaryRat;
+import expression.operators.OperatorUnaryArith;
+import expression.operators.OperatorUnaryRat;
 import factory.Expression;
 import factory.ExpressionFactory;
 
-public class RationalExpressionFactory implements ExpressionFactory {
+public class RationalExpressionFactory implements ExpressionFactory<RationalExpression> {
 
     /**
      * Concrete Creator
@@ -24,8 +30,15 @@ public class RationalExpressionFactory implements ExpressionFactory {
      * @return
      */
     @Override
-    public RationalExpression createBinaryExpression(Expression exp1, char operator, Expression exp2) {
-        return null;
+    public RationalExpression createBinaryExpression(RationalExpression exp1, char operator, RationalExpression exp2) {
+        OperatorBinaryRat opb = null;
+        for (OperatorBinaryRat op : OperatorBinaryRat.values()) {
+            if (op.getChar() == operator) {
+                opb = op;
+                break;
+            }
+        }
+        return new RationalBinaryOperation(exp1,opb,exp2);
     }
 
     /**
@@ -34,7 +47,14 @@ public class RationalExpressionFactory implements ExpressionFactory {
      * @return
      */
     @Override
-    public RationalExpression createUnaryExpression(char operator, Expression expression) {
-        return null;
+    public RationalExpression createUnaryExpression(char operator, RationalExpression expression) {
+        OperatorUnaryRat opb = null;
+        for (OperatorUnaryRat op : OperatorUnaryRat.values()) {
+            if (op.getChar() == operator) {
+                opb = op;
+                break;
+            }
+        }
+        return new RationalUnaryOperation(expression,opb);
     }
 }

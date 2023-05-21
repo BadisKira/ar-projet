@@ -18,7 +18,7 @@ public enum OperatorBinaryRat {
     }
 
     public static boolean isBinaryOperator(String input) {
-        for (OperatorBinaryArith operator : OperatorBinaryArith.values()) {
+        for (OperatorBinaryRat operator : values()) {
             if (operator.getChar() == input.charAt(0)) {
                 return true;
             }

@@ -9,21 +9,12 @@ import factory.arithmetic.ArithmeticExpressionFactory;
 
 import java.util.Stack;
 
-public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
-    private Stack<ArithmeticExpression> expressionStack;
-    private ArithmeticExpressionFactory expressionFactory ;
-
-
+public class ArithmeticStack extends BaseStack<ArithmeticExpression>{
+    private ArithmeticExpressionFactory expressionFactory;
 
     public ArithmeticStack(){
-        expressionStack = new Stack<>();
+        super();
         expressionFactory = new ArithmeticExpressionFactory() ;
-    }
-    @Override
-    public void addExpression(ArithmeticExpression expression) {
-
-        expressionStack.add(expression);
-        System.out.println( toString() ) ;
     }
 
     @Override
@@ -32,10 +23,10 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
         // check binary ou unary et si c'est un double
 
          if(OperatorUnaryArith.isUnaryOperator(strExp) ){
-             if(this.expressionStack.size() >= 1) {
+             if(getStack().size() >= 1) {
                  addExpression(expressionFactory.createUnaryExpression(
                          strExp.charAt(0),
-                         this.expressionStack.pop()  ));
+                         getStack().remove(0)));
                  return;
              }else {
                  System.out.println("Invalid operator. Expected a constant");
@@ -43,11 +34,11 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
              }
          }
         if(OperatorBinaryArith.isBinaryOperator(strExp) ){
-             if(this.expressionStack.size() >= 2 ){
+             if(getStack().size() >= 2 ){
                  addExpression(expressionFactory.createBinaryExpression(
-                         this.expressionStack.pop(),
+                         getStack().remove(0),
                          strExp.charAt(0),
-                         this.expressionStack.pop())
+                         getStack().remove(0))
                  );
                  return;
              }else {
@@ -58,15 +49,12 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
 
         if(isDouble(strExp)) {
             addExpression(expressionFactory.createConstExpression(strExp)) ;
-            return;
         }else {
             System.out.println("Invalid value. Expected a double.");
-            return;
         }
 
     }
-
-    public  boolean isDouble(String str) {
+    private  boolean isDouble(String str) {
         try {
             Double.parseDouble(str);
             return true;
@@ -74,39 +62,4 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
             return false;
         }
     }
-
-    @Override
-    public Stack<ArithmeticExpression> getStack() {
-        return expressionStack;
-    }
-
-
-
-    @Override
-    public boolean isEmpty() {
-        return this.expressionStack.isEmpty() ;
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public Expression peek() {
-        return this.expressionStack.peek();
-
-    }
-
-    @Override
-    public String toString(){
-        StringBuilder str = new StringBuilder();
-        int c = 0;
-        for(int i = expressionStack.size() - 1; i >= 0; i--){
-            str.append(c + ": " + expressionStack.get(i).toString() + "\n");
-            c++;
-        }
-        return str.toString();
-    }
-
-
-
 }

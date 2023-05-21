@@ -17,7 +17,7 @@ public enum OperatorUnaryRat {
     }
 
     public static boolean isUnaryOperator(String input) {
-        for (OperatorUnaryArith operator : OperatorUnaryArith.values()) {
+        for (OperatorUnaryRat operator : values()) {
             if (operator.getChar() == input.charAt(0)) {
                 return true;
             }

@@ -21,17 +21,6 @@ public class RationalUnaryOperation implements RationalExpression{
 
     @Override
     public String toString(){
-        List<String> stringList  = getRecognizedWords();
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append("{") ;
-        for (String str : stringList) {
-            stringBuilder.append(str);
-            stringBuilder.append(",") ;
-        }
-        stringBuilder.append("}") ;
-
-
-        return stringBuilder.toString();
+        return expression.toString() + " " + operator.getChar();
     }
 }

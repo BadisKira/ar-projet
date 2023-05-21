@@ -16,7 +16,7 @@ public enum OperatorBinaryArith {
         return symbol;
     }
     public static boolean isBinaryOperator(String input) {
-        for (OperatorBinaryArith operator : OperatorBinaryArith.values()) {
+        for (OperatorBinaryArith operator : values()) {
             if (operator.getChar() == input.charAt(0)) {
                 return true;
             }

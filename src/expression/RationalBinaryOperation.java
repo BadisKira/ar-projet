@@ -18,16 +18,6 @@ public class RationalBinaryOperation implements RationalExpression{
         return operator.calculate(exp1,exp2);
     }
     public String toString(){
-        List<String> stringList  = getRecognizedWords();
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append("{") ;
-        for (String str : stringList) {
-            stringBuilder.append(str);
-            stringBuilder.append(",") ;
-        }
-        stringBuilder.append("}") ;
-
-        return stringBuilder.toString();
+        return  exp1.toString() + " " + exp2.toString() + " " + operator.getChar();
     }
 }

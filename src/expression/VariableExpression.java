@@ -4,7 +4,7 @@ import factory.Expression;
 
 public class VariableExpression implements  FunctionalExpression {
 
-    private double value   ;
+    private double value;
 
     public void setValue(double value) {
         this.value = value;
@@ -28,6 +28,6 @@ public class VariableExpression implements  FunctionalExpression {
      **/
     @Override
     public String toString() {
-        return null;
+        return "(x)";
     }
 }

@@ -14,32 +14,32 @@ public class FunctionalExpressionFactory extends ArithmeticExpressionFactory  {
      *
      * @param value
      */
-/*    @Override
+    @Override
     public ArithmeticExpression createConstExpression(String value) {
         return super.createConstExpression(value) ;
-    }*/
+    }
     /**
      * @param exp1
      * @param operator
      * @param exp2
      * @return
      */
-   /* @Override
-    public FunctionalExpression createBinaryExpression(FunctionalExpression exp1, char operator, FunctionalExpression exp2) {
+   @Override
+    public FunctionalExpression createBinaryExpression(ArithmeticExpression exp1, char operator, ArithmeticExpression exp2) {
         return createBinaryExpression(exp1,operator,exp2);
-    }*/
+    }
 
     /**
      * @param operator
      * @param expression
      * @return
      */
-   /* @Override
-    public FunctionalExpression createUnaryExpression(char operator, FunctionalExpression expression) {
+    @Override
+    public FunctionalExpression createUnaryExpression(char operator, ArithmeticExpression expression) {
         return  createUnaryExpression(operator,expression);
-    }*/
+    }
 
-   /* public FunctionalExpression createVariableExpression(String value) {
+   public FunctionalExpression createVariableExpression(String value) {
         return new VariableExpression() ;
-    }*/
+    }
 }

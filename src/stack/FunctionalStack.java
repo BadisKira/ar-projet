@@ -1,5 +1,6 @@
 package stack;
 
+import expression.ArithmeticExpression;
 import expression.FunctionalExpression;
 import expression.operators.OperatorBinaryArith;
 import expression.operators.OperatorUnaryArith;
@@ -9,23 +10,13 @@ import factory.function.FunctionalExpressionFactory;
 
 import java.util.Stack;
 
-public class FunctionalStack  implements ExpressionStack{
-
-    private Stack<FunctionalExpression> expressionStack;
+public class FunctionalStack  extends BaseStack<ArithmeticExpression>{
     private FunctionalExpressionFactory expressionFactory ;
 
     private String variableForm = "x" ;
     public FunctionalStack(){
-
-        expressionStack = new Stack<>();
+        super();
         expressionFactory = new FunctionalExpressionFactory();
-    }
-
-    /**
-     * @param expression
-     */
-    @Override
-    public void addExpression(Expression expression) {
     }
 
     /**
@@ -34,13 +25,11 @@ public class FunctionalStack  implements ExpressionStack{
     @Override
     public void input(String strExp) {
         //ToDo : create expression,pop element...
-
-
         if(OperatorUnaryArith.isUnaryOperator(strExp) ){
-            if(this.expressionStack.size() >= 1) {
+            if(getStack().size() >= 1) {
                 addExpression(expressionFactory.createUnaryExpression(
                         strExp.charAt(0),
-                        this.expressionStack.pop()  ));
+                        getStack().remove(0)));
 
                 return;
             }else {
@@ -49,13 +38,13 @@ public class FunctionalStack  implements ExpressionStack{
             }
         }
         if(OperatorBinaryArith.isBinaryOperator(strExp) ){
-            if(this.expressionStack.size() >= 2 ){
+            if(getStack().size() >= 2 ){
                 addExpression(expressionFactory.createBinaryExpression(
-                        this.expressionStack.pop(),
+                        getStack().remove(0),
                         strExp.charAt(0),
-                        this.expressionStack.pop())
+                        getStack().remove(0))
                 );
-                return ;
+                return;
             }else {
                 System.out.println("Invalid operator. Expected a constant or a unary operator");
                 return;
@@ -63,22 +52,19 @@ public class FunctionalStack  implements ExpressionStack{
         }
 
         if(isDouble(strExp)) {
-            addExpression(expressionFactory.createConstExpression(strExp)) ;
+            addExpression(expressionFactory.createConstExpression(strExp));
             return;
         }else {
             if(strExp.equals(variableForm)) {
-            //    addExpression(expressionFactory.createVariableExpression(strExp)) ;
+               addExpression(expressionFactory.createVariableExpression(strExp)) ;
             } else {
                 System.out.println("Invalid operator.only variable accepted is 'x'");
                 return ;
             }
             System.out.println("Invalid value. Expected a double.");
         }
-
-
     }
-
-    public  boolean isDouble(String str) {
+    private  boolean isDouble(String str) {
         try {
             Double.parseDouble(str);
             return true;
@@ -86,27 +72,4 @@ public class FunctionalStack  implements ExpressionStack{
             return false;
         }
     }
-
-    /**
-     * @return
-     */
-    @Override
-    public Stack getStack() {
-        return this.expressionStack;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.expressionStack.isEmpty() ;
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public Expression peek() {
-        return this.expressionStack.peek();
-    }
-
-
 }
