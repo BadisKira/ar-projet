@@ -44,7 +44,6 @@ public class StdExpressionBuilder implements ExpressionBuilder {
                         current.setExpression2(bes);
                     break;
                 default:
-                    System.out.println("Set expression error");
                     break;
             }
         }

@@ -53,7 +53,6 @@ public class ExpressionHandler extends DefaultHandler {
                 builder.startOperator();
                 break;
             case "value":
-                System.out.println("STARTING VALUE");
                 builder.startValue();
                 break;
         }

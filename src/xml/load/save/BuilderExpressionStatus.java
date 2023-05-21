@@ -48,7 +48,6 @@ public class BuilderExpressionStatus {
     }
 
     public void setValue(String value) {
-        System.out.println("Setting value to : " + value);
         this.value = value;
     }
 

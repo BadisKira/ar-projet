@@ -5,10 +5,10 @@ import visitor.ExpressionVisitor;
 
 public class VariableExpression implements FunctionalExpression {
 
-    private double value;
+    private static double value;
 
-    public void setValue(double value) {
-        this.value = value;
+    public static void setValue(double value) {
+        VariableExpression.value = value;
     }
 
     public VariableExpression(){

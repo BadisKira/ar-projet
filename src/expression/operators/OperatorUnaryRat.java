@@ -30,6 +30,7 @@ public enum OperatorUnaryRat {
         switch(this){
             case KLEENE:
                 words = new ArrayList<>();
+                words.add(RationalExpression.EMPTY_WORD);
                 kleene(exp.getRecognizedWords(),"",words, RationalExpression.MAX_WORD_SIZE);
                 return words;
             default:
