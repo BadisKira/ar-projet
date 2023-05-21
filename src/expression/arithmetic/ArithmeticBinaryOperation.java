@@ -1,6 +1,8 @@
 package expression.arithmetic;
 
 import expression.operators.OperatorBinaryArith;
+import expression.operators.OperatorUnaryArith;
+import visitor.ExpressionVisitor;
 
 public class ArithmeticBinaryOperation implements ArithmeticExpression {
     /**
@@ -24,5 +26,22 @@ public class ArithmeticBinaryOperation implements ArithmeticExpression {
     @Override
     public String toString(){
         return expression1.toString() +" "+ expression2.toString()+" "+ operator.getChar();
+    }
+
+    public OperatorBinaryArith getOperator(){
+        return operator;
+    }
+
+    public ArithmeticExpression getExpression1(){
+        return expression1;
+    }
+
+    public ArithmeticExpression getExpression2(){
+        return expression2;
+    }
+
+    @Override
+    public void acceptVisitor(ExpressionVisitor visitor) {
+        visitor.visitArithBinary(this);
     }
 }

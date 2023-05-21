@@ -1,6 +1,7 @@
 package expression.arithmetic;
 
 import expression.operators.OperatorUnaryArith;
+import visitor.ExpressionVisitor;
 
 public class ArithmeticUnaryExpression implements ArithmeticExpression {
     private ArithmeticExpression expression;
@@ -16,5 +17,17 @@ public class ArithmeticUnaryExpression implements ArithmeticExpression {
     @Override
     public String toString(){
         return expression.toString() + " " + operator.getChar();
+    }
+
+    @Override
+    public void acceptVisitor(ExpressionVisitor visitor) {
+        visitor.visitArithUnary(this);
+    }
+
+    public ArithmeticExpression getExpression(){
+        return expression;
+    }
+    public OperatorUnaryArith getOperator(){
+        return operator;
     }
 }

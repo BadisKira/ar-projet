@@ -1,6 +1,9 @@
 package expression.rational;
 
+import expression.operators.OperatorBinaryRat;
+import expression.operators.OperatorUnaryArith;
 import expression.operators.OperatorUnaryRat;
+import visitor.ExpressionVisitor;
 
 import java.util.List;
 
@@ -22,5 +25,18 @@ public class RationalUnaryOperation implements RationalExpression{
     @Override
     public String toString(){
         return expression.toString() + " " + operator.getChar();
+    }
+
+    public RationalExpression getExpression(){
+        return expression;
+    }
+
+    public OperatorUnaryRat getOperator(){
+        return operator;
+    }
+
+    @Override
+    public void acceptVisitor(ExpressionVisitor visitor) {
+        visitor.visitRatUnary(this);
     }
 }

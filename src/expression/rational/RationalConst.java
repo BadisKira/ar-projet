@@ -1,5 +1,7 @@
 package expression.rational;
 
+import visitor.ExpressionVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,11 @@ public class RationalConst implements RationalExpression {
         }
         str.append("}");
         return str.toString();
+    }
+
+    @Override
+    public void acceptVisitor(ExpressionVisitor visitor) {
+        visitor.visitRatConst(this);
     }
 
     @Override

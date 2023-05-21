@@ -10,9 +10,6 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException, ParserConfigurationException, SAXException {
-        ExpressionBuilder eb = new StdExpressionBuilder();
-        XmlFileLoader.load("C:\\Users\\berka\\Desktop\\archi-log new\\ar-projet\\src\\client/test.xml",eb);
-        System.out.println(eb.build().toString());
         Expedid.run();
     }
 }

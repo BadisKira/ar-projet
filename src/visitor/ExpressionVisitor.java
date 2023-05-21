@@ -21,4 +21,6 @@ public interface ExpressionVisitor {
 
     //funcitonal
     void visitVariable(VariableExpression variableExpression);
+
+    void endVisit();
 }

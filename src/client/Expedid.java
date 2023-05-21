@@ -5,12 +5,16 @@ import stack.ArithmeticStack;
 import stack.ExpressionStack;
 import stack.FunctionalStack;
 import stack.RationalStack;
+import visitor.ExpressionVisitor;
+import visitor.XMLExpressionVisitor;
 import xml.load.save.ExpressionBuilder;
 import xml.load.save.StdExpressionBuilder;
 import xml.load.save.XmlFileLoader;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public  class Expedid {
@@ -22,7 +26,7 @@ public  class Expedid {
     private static final String EMPTY_COMMAND = "";
 
     private static ExpressionStack expressionStack = null ;
-
+    private static String expressionType;
     public static void run() throws FileNotFoundException, ParserConfigurationException, SAXException {
         System.out.println("Hello , could you choose the expression type :");
         String input;
@@ -41,7 +45,7 @@ public  class Expedid {
                  * !save nom_fichier : enregistre dans le fichier dont le chemin est indiqué la sérialisation en XML de
                  * l’expression au sommet de la pile. L’expression reste sur la pile.
                  */
-                loadExpressionFromXML(expressionStack,input);
+                handleSaveCommand(input);
             } else if (input.startsWith(LOAD_COMMAND)) {
                 /** — !load nom_fichier : désérialise le contenu XML du fichier dont le chemin est indiqué pour construire
                          une expression. L’expression construite est placée au sommet de la pile
@@ -61,10 +65,14 @@ public  class Expedid {
         }
     }
 
-    private static void handleSaveCommand(String file) {
-        System.out.println("Please provide a valid file name. Syntax: !save file_name\n");
-        //  String filename = input.substring(SAVE_COMMAND.length() + 1);
-        // saveExpressionToXML(pile, filename);
+    private static void handleSaveCommand(String file) throws FileNotFoundException {
+        file = file.split(" ")[1];
+        File f = new File(file);
+        PrintStream ps = new PrintStream(f);
+        ExpressionVisitor visitor = new XMLExpressionVisitor(ps,expressionType);
+        expressionStack.getFirst().acceptVisitor(visitor);
+        visitor.endVisit();
+        System.out.println("The XML file has ben generated !");
     }
 
 
@@ -77,24 +85,21 @@ public  class Expedid {
     private static void handleInputExpression(String type) {
         switch (type) {
             case "arith":
-                expressionStack =  new ArithmeticStack() ;
-                // stack
+                expressionType = type;
+                expressionStack =  new ArithmeticStack();
                 break;
             case "function":
+                expressionType = type;
                 expressionStack =  new FunctionalStack() ;
                 break;
             case "rational":
+                expressionType = type;
                 expressionStack =  new RationalStack() ;
                 break;
             default:
                 System.out.println("Type d'expression inexistant : " + type);
                 break;
         }
-    }
-
-    private static void saveExpressionToXML(ExpressionStack stack, String input) throws FileNotFoundException, ParserConfigurationException, SAXException {
-        // Code to save expression to XML file
-        System.out.println("Expression saved to XML file: " + input);
     }
 
     private static void loadExpressionFromXML(ExpressionStack stack, String input) throws FileNotFoundException, ParserConfigurationException, SAXException {
@@ -104,7 +109,6 @@ public  class Expedid {
         stack.addExpression(eb.build() );
         System.out.println(stack.toString());
         // System.out.println(eb.build().toString());
-
     }
 
     private static void displayExpressionTypes() {
@@ -115,7 +119,6 @@ public  class Expedid {
 
 
     private static void handleStackExpression(String input) {
-        // System.out.println("nous buildons maintenant l'expresssion a utiliser");
         expressionStack.input(input);
     }
 }

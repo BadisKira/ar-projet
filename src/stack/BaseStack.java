@@ -37,4 +37,6 @@ public abstract class BaseStack<T extends Expression> implements ExpressionStack
     public Expression peek() {
         return expressionStack.peek();
     }
+    @Override
+    public Expression getFirst(){return expressionStack.get(0);}
 }

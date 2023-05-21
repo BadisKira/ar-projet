@@ -12,9 +12,6 @@ public interface ExpressionStack<T extends Expression> {
     Stack<T> getStack();
     String toString();
     boolean isEmpty() ;
-    Expression peek() ;
-
-
-    XmlFileLoader xmlLoader = null;
-    XmlFileSaver xmlSaver = null ;
+    Expression peek();
+    Expression getFirst();
 }

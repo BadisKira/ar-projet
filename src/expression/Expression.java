@@ -1,5 +1,7 @@
 package expression;
 
+import visitor.ExpressionVisitor;
+
 public interface Expression {
 
     /**
@@ -7,5 +9,5 @@ public interface Expression {
      * **/
     String toString();
     //void acceptVisitor();
-    //void accept(ExpressionVisitor visitor);
+    void acceptVisitor(ExpressionVisitor visitor);
 }
