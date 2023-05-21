@@ -23,8 +23,8 @@ public class FunctionalExpressionFactory extends ArithmeticExpressionFactory  {
      * @return
      */
    @Override
-    public FunctionalExpression createBinaryExpression(ArithmeticExpression exp1, char operator, ArithmeticExpression exp2) {
-        return createBinaryExpression(exp1,operator,exp2);
+    public ArithmeticExpression createBinaryExpression(ArithmeticExpression exp1, char operator, ArithmeticExpression exp2) {
+        return super.createBinaryExpression(exp1,operator,exp2);
     }
 
     /**
@@ -33,8 +33,8 @@ public class FunctionalExpressionFactory extends ArithmeticExpressionFactory  {
      * @return
      */
     @Override
-    public FunctionalExpression createUnaryExpression(char operator, ArithmeticExpression expression) {
-        return  createUnaryExpression(operator,expression);
+    public ArithmeticExpression createUnaryExpression(char operator, ArithmeticExpression expression) {
+        return  super.createUnaryExpression(operator,expression);
     }
 
    public FunctionalExpression createVariableExpression(String value) {

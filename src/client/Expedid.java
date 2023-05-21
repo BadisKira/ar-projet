@@ -6,7 +6,7 @@ import stack.ExpressionStack;
 import stack.FunctionalStack;
 import stack.RationalStack;
 import xml.load.save.ExpressionBuilder;
-import xml.load.save.XmlExpressionBuilder;
+import xml.load.save.StdExpressionBuilder;
 import xml.load.save.XmlFileLoader;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -99,7 +99,7 @@ public  class Expedid {
 
     private static void loadExpressionFromXML(ExpressionStack stack, String input) throws FileNotFoundException, ParserConfigurationException, SAXException {
         String filename = input.split(" ")[1];
-        ExpressionBuilder eb = new XmlExpressionBuilder();
+        ExpressionBuilder eb = new StdExpressionBuilder();
         XmlFileLoader.load("C:\\Users\\berka\\Desktop\\archi-log new\\ar-projet\\src\\client/test.xml",eb);
         stack.addExpression(eb.build() );
         System.out.println(stack.toString());

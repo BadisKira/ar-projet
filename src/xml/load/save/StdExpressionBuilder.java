@@ -1,6 +1,7 @@
 package xml.load.save;
 
 import expression.ExpressionType;
+import expression.functional.VariableExpression;
 import expression.operators.OperatorBinaryArith;
 import expression.operators.OperatorBinaryRat;
 import expression.operators.OperatorUnaryArith;
@@ -11,13 +12,13 @@ import factory.arithmetic.ArithmeticExpressionFactory;
 import factory.function.FunctionalExpressionFactory;
 import factory.rational.RationalExpressionFactory;
 
-public class XmlExpressionBuilder implements ExpressionBuilder {
+public class StdExpressionBuilder implements ExpressionBuilder {
     private BuilderExpressionStatus first;
     private BuilderExpressionStatus current;
     private ExpressionType type;
     private BuilderStatus status;
     private ExpressionFactory fac;
-    public XmlExpressionBuilder(){
+    public StdExpressionBuilder(){
         status = BuilderStatus.IDLE;
     }
     @Override
@@ -169,6 +170,10 @@ public class XmlExpressionBuilder implements ExpressionBuilder {
             case UNARY:
                 return fac.createUnaryExpression(bes.getOperator(),buildRecursivly(bes.getExpression1()));
             default:
+                if(type == ExpressionType.FUNCTIONAL && bes.getValue().equals("x")){
+                    System.out.println("CREATING VARIABLE");
+                    return new VariableExpression();
+                }
                 return fac.createConstExpression(bes.getValue());
         }
     }
