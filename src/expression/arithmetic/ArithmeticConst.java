@@ -1,6 +1,4 @@
-package expression;
-
-import stack.ExpressionStack;
+package expression.arithmetic;
 
 public class ArithmeticConst implements ArithmeticExpression {
     private double value;

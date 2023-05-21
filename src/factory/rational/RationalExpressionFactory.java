@@ -1,14 +1,11 @@
 package factory.rational;
 
-import expression.RationalBinaryOperation;
-import expression.RationalConst;
-import expression.RationalExpression;
-import expression.RationalUnaryOperation;
-import expression.operators.OperatorBinaryArith;
+import expression.rational.RationalBinaryOperation;
+import expression.rational.RationalConst;
+import expression.rational.RationalExpression;
+import expression.rational.RationalUnaryOperation;
 import expression.operators.OperatorBinaryRat;
-import expression.operators.OperatorUnaryArith;
 import expression.operators.OperatorUnaryRat;
-import factory.Expression;
 import factory.ExpressionFactory;
 
 public class RationalExpressionFactory implements ExpressionFactory<RationalExpression> {

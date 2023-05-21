@@ -1,14 +1,9 @@
 package stack;
 
-import expression.ArithmeticExpression;
-import expression.FunctionalExpression;
+import expression.arithmetic.ArithmeticExpression;
 import expression.operators.OperatorBinaryArith;
 import expression.operators.OperatorUnaryArith;
-import factory.Expression;
-import factory.ExpressionFactory;
 import factory.function.FunctionalExpressionFactory;
-
-import java.util.Stack;
 
 public class FunctionalStack  extends BaseStack<ArithmeticExpression>{
     private FunctionalExpressionFactory expressionFactory ;

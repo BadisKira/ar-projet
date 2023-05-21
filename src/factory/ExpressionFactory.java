@@ -1,5 +1,7 @@
 package factory;
 
+import expression.Expression;
+
 public interface ExpressionFactory <T extends Expression>{
     /**
      *Creator

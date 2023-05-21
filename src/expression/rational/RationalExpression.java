@@ -1,6 +1,6 @@
-package expression;
+package expression.rational;
 
-import factory.Expression;
+import expression.Expression;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package expression;
+package expression.rational;
 
 import expression.operators.OperatorBinaryRat;
 

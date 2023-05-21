@@ -1,6 +1,6 @@
 package expression.operators;
 
-import expression.ArithmeticExpression;
+import expression.arithmetic.ArithmeticExpression;
 
 public enum OperatorBinaryArith {
     PLUS('+'),

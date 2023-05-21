@@ -1,6 +1,6 @@
-package expression;
+package expression.arithmetic;
 
-import factory.Expression;
+import expression.Expression;
 
 public interface ArithmeticExpression extends Expression {
     double getValue();

@@ -1,6 +1,6 @@
 package xml.load.save;
 
-import factory.Expression;
+import expression.Expression;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -13,8 +13,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class XmlFileSaver {
-    IBuilderXML builderXML;
-    public XmlFileSaver(IBuilderXML builderXML) {
+    ExpressionBuilder builderXML;
+    public XmlFileSaver(ExpressionBuilder builderXML) {
         this.builderXML = builderXML;
     }
 

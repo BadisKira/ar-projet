@@ -1,4 +1,4 @@
-package factory;
+package expression;
 
 public interface Expression {
 

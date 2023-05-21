@@ -1,7 +1,6 @@
 package stack;
 
-import expression.ArithmeticExpression;
-import factory.Expression;
+import expression.Expression;
 
 import java.util.Stack;
 

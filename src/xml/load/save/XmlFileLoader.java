@@ -1,26 +1,17 @@
 package xml.load.save;
-import factory.Expression;
 
-import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
-import stack.ExpressionStack;
+import org.xml.sax.XMLReader;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Stack;
-import java.io.File;
-import java.util.Stack;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class XmlFileLoader {
-    private IBuilderXML builderXML;
-
-    public XmlFileLoader(IBuilderXML builderXML) {
-        this.builderXML = builderXML;
-    }
 
     /**
      * Reads an XML file from the specified path and creates a Stack of expressions.
@@ -28,5 +19,22 @@ public class XmlFileLoader {
      * @param filePath The path of the XML file to be read.
      * @return A Stack of expressions created from the XML file.
      */
-
+    public static void load(String filePath, ExpressionBuilder eb) throws ParserConfigurationException, SAXException, FileNotFoundException
+    {
+        InputSource is = new InputSource(new BufferedInputStream((new FileInputStream(filePath))));
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        SAXParser sp = spf.newSAXParser();
+        XMLReader xr = sp.getXMLReader();
+        ExpressionHandler eh = new ExpressionHandler(eb);
+        xr.setContentHandler(eh);
+        xr.setErrorHandler(eh);
+        try
+        {
+            xr.parse(is);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error : " + e.getMessage());
+        }
+    }
 }

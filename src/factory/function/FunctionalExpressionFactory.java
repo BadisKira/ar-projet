@@ -1,10 +1,8 @@
 package factory.function;
 
-import expression.ArithmeticExpression;
-import expression.FunctionalExpression;
-import expression.VariableExpression;
-import factory.Expression;
-import factory.ExpressionFactory;
+import expression.arithmetic.ArithmeticExpression;
+import expression.functional.FunctionalExpression;
+import expression.functional.VariableExpression;
 import factory.arithmetic.ArithmeticExpressionFactory;
 
 public class FunctionalExpressionFactory extends ArithmeticExpressionFactory  {

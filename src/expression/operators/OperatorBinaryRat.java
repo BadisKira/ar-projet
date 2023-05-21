@@ -1,6 +1,6 @@
 package expression.operators;
 
-import expression.RationalExpression;
+import expression.rational.RationalExpression;
 
 import java.util.ArrayList;
 import java.util.List;

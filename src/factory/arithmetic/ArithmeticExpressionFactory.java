@@ -1,12 +1,11 @@
 package factory.arithmetic;
 
-import expression.ArithmeticBinaryOperation;
-import expression.ArithmeticConst;
-import expression.ArithmeticExpression;
-import expression.ArithmeticUnaryExpression;
+import expression.arithmetic.ArithmeticBinaryOperation;
+import expression.arithmetic.ArithmeticConst;
+import expression.arithmetic.ArithmeticExpression;
+import expression.arithmetic.ArithmeticUnaryExpression;
 import expression.operators.OperatorBinaryArith;
 import expression.operators.OperatorUnaryArith;
-import factory.Expression;
 import factory.ExpressionFactory;
 
 public class ArithmeticExpressionFactory implements ExpressionFactory<ArithmeticExpression> {

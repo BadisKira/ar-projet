@@ -1,4 +1,4 @@
-package expression;
+package expression.arithmetic;
 
 import expression.operators.OperatorUnaryArith;
 

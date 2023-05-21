@@ -1,15 +1,9 @@
 package stack;
 
-import expression.RationalExpression;
-import expression.operators.OperatorBinaryArith;
+import expression.rational.RationalExpression;
 import expression.operators.OperatorBinaryRat;
-import expression.operators.OperatorUnaryArith;
 import expression.operators.OperatorUnaryRat;
-import factory.Expression;
-import factory.ExpressionFactory;
 import factory.rational.RationalExpressionFactory;
-
-import java.util.Stack;
 
 public class RationalStack extends BaseStack<RationalExpression>{
     private RationalExpressionFactory expressionFactory ;

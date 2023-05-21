@@ -1,8 +1,8 @@
-package expression;
+package expression.functional;
 
-import factory.Expression;
+import expression.functional.FunctionalExpression;
 
-public class VariableExpression implements  FunctionalExpression {
+public class VariableExpression implements FunctionalExpression {
 
     private double value;
 

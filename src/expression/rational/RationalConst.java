@@ -1,4 +1,4 @@
-package expression;
+package expression.rational;
 
 import java.util.ArrayList;
 import java.util.List;

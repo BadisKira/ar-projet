@@ -1,6 +1,6 @@
 package stack;
 
-import factory.Expression;
+import expression.Expression;
 import xml.load.save.XmlFileLoader;
 import xml.load.save.XmlFileSaver;
 

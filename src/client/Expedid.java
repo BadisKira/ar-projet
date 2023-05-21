@@ -1,13 +1,17 @@
 package client;
 
-import factory.Expression;
+import org.xml.sax.SAXException;
 import stack.ArithmeticStack;
 import stack.ExpressionStack;
 import stack.FunctionalStack;
 import stack.RationalStack;
+import xml.load.save.ExpressionBuilder;
+import xml.load.save.XmlExpressionBuilder;
+import xml.load.save.XmlFileLoader;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.Stack;
 
 public  class Expedid {
     static Scanner scanner = new Scanner(System.in);
@@ -19,7 +23,7 @@ public  class Expedid {
 
     private static ExpressionStack expressionStack = null ;
 
-    public static void run() {
+    public static void run() throws FileNotFoundException, ParserConfigurationException, SAXException {
         System.out.println("Hello , could you choose the expression type :");
         String input;
 
@@ -37,12 +41,12 @@ public  class Expedid {
                  * !save nom_fichier : enregistre dans le fichier dont le chemin est indiqué la sérialisation en XML de
                  * l’expression au sommet de la pile. L’expression reste sur la pile.
                  */
-                handleSaveCommand(input);
+                loadExpressionFromXML(expressionStack,input);
             } else if (input.startsWith(LOAD_COMMAND)) {
                 /** — !load nom_fichier : désérialise le contenu XML du fichier dont le chemin est indiqué pour construire
                          une expression. L’expression construite est placée au sommet de la pile
                  */
-                handleLoadCommand(input);
+                loadExpressionFromXML(expressionStack,input);
             } else if (input.startsWith(TYPE_COMMAND)) {
                 handleTypeCommand(input);
             } else {
@@ -63,10 +67,6 @@ public  class Expedid {
         // saveExpressionToXML(pile, filename);
     }
 
-    private static void handleLoadCommand(String file) {
-        System.out.println("Please provide a valid file name. Syntax: !load file_name\n");
-        //loadExpressionFromXML(pile, filename);
-    }
 
     private static void handleTypeCommand(String input) {
         if (input.equals(TYPE_COMMAND)) {
@@ -92,14 +92,19 @@ public  class Expedid {
         }
     }
 
-    private static void saveExpressionToXML(Stack<Expression> stack, String filename) {
+    private static void saveExpressionToXML(ExpressionStack stack, String input) throws FileNotFoundException, ParserConfigurationException, SAXException {
         // Code to save expression to XML file
-        System.out.println("Expression saved to XML file: " + filename);
+        System.out.println("Expression saved to XML file: " + input);
     }
 
-    private static void loadExpressionFromXML(Stack<Object> stack, String filename) {
-        // Code to load expression from XML file
-        System.out.println("Expression loaded from XML file: " + filename);
+    private static void loadExpressionFromXML(ExpressionStack stack, String input) throws FileNotFoundException, ParserConfigurationException, SAXException {
+        String filename = input.split(" ")[1];
+        ExpressionBuilder eb = new XmlExpressionBuilder();
+        XmlFileLoader.load("C:\\Users\\berka\\Desktop\\archi-log new\\ar-projet\\src\\client/test.xml",eb);
+        stack.addExpression(eb.build() );
+        System.out.println(stack.toString());
+        // System.out.println(eb.build().toString());
+
     }
 
     private static void displayExpressionTypes() {
