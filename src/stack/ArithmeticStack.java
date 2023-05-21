@@ -22,7 +22,7 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
     public void addExpression(ArithmeticExpression expression) {
 
         expressionStack.add(expression);
-        toString();
+        System.out.println( toString() ) ;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
         StringBuilder str = new StringBuilder();
         int c = 0;
         for(int i = expressionStack.size() - 1; i >= 0; i--){
-            str.append(c + ": " + expressionStack.get(i).toString());
+            str.append(c + ": " + expressionStack.get(i).toString() + "\n");
             c++;
         }
         return str.toString();

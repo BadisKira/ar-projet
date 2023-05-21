@@ -1,10 +1,6 @@
 package client;
 
 import factory.Expression;
-import factory.ExpressionFactory;
-import factory.arithmetic.ArithmeticExpressionFactory;
-import factory.function.FunctionalExpressionFactory;
-import factory.rational.RationalExpressionFactory;
 import stack.ArithmeticStack;
 import stack.ExpressionStack;
 import stack.FunctionalStack;
@@ -33,22 +29,29 @@ public  class Expedid {
                 System.out.println("Au revoir !");
                 System.exit(0);
             } else if (input.startsWith(SAVE_COMMAND)) {
+                /**
+                 * !save nom_fichier : enregistre dans le fichier dont le chemin est indiqué la sérialisation en XML de
+                 * l’expression au sommet de la pile. L’expression reste sur la pile.
+                 */
                 handleSaveCommand(input);
             } else if (input.startsWith(LOAD_COMMAND)) {
+                /** — !load nom_fichier : désérialise le contenu XML du fichier dont le chemin est indiqué pour construire
+                         une expression. L’expression construite est placée au sommet de la pile
+                 */
                 handleLoadCommand(input);
             } else if (input.startsWith(TYPE_COMMAND)) {
                 handleTypeCommand(input);
             } else {
                 if(expressionStack == null)
                     handleInputExpression(input);
-
-                handleStackExpression(input) ;
+                else
+                    handleStackExpression(input) ;
 
             }
         }
     }
 
-    private static void handleSaveCommand(String input) {
+    private static void handleSaveCommand(String file) {
         System.out.println("Veuillez fournir un nom de fichier valide. Syntaxe : !save nom_du_fichier");
         //  String filename = input.substring(SAVE_COMMAND.length() + 1);
         // saveExpressionToXML(pile, filename);
@@ -83,7 +86,7 @@ public  class Expedid {
         }
     }
 
-    private static void saveExpressionToXML(Stack<Object> stack, String filename) {
+    private static void saveExpressionToXML(Stack<Expression> stack, String filename) {
         // Code to save expression to XML file
         System.out.println("Expression saved to XML file: " + filename);
     }
@@ -102,9 +105,6 @@ public  class Expedid {
 
     private static void handleStackExpression(String input) {
         // System.out.println("nous buildons maintenant l'expresssion a utiliser");
-        /**
-         * Input of user know
-         * */
         expressionStack.input(input);
     }
 
