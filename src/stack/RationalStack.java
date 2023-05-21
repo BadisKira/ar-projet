@@ -5,6 +5,7 @@ import expression.operators.OperatorBinaryArith;
 import expression.operators.OperatorBinaryRat;
 import expression.operators.OperatorUnaryArith;
 import expression.operators.OperatorUnaryRat;
+import factory.Expression;
 import factory.ExpressionFactory;
 import factory.rational.RationalExpressionFactory;
 
@@ -20,7 +21,9 @@ public class RationalStack implements ExpressionStack<RationalExpression>{
     }
     @Override
     public void addExpression(RationalExpression expression) {
+
         expressionStack.add(expression);
+        System.out.println(toString());
     }
 
     @Override
@@ -35,6 +38,7 @@ public class RationalStack implements ExpressionStack<RationalExpression>{
             }else {
                 System.out.println("Invalid operator. Expected a constant");
             }
+            return;
         }
         if(OperatorBinaryRat.isBinaryOperator(strExp) ){
             if(this.expressionStack.size() >= 2 ){
@@ -46,11 +50,13 @@ public class RationalStack implements ExpressionStack<RationalExpression>{
             }else {
                 System.out.println("Invalid operator. Expected a constant or a unary operator");
             }
+            return;
         }
 
         if(strExp.matches(FORMAT_RATIONAL)){
-            if(strExp.length() > 20) {
+            if(strExp.length() <= 20) {
                     expressionFactory.createConstExpression(strExp) ;
+
             }else {
                 System.out.println("Error: The input is too long (max 20).");
             }
@@ -63,6 +69,18 @@ public class RationalStack implements ExpressionStack<RationalExpression>{
     @Override
     public Stack<RationalExpression> getStack() {
         return expressionStack;
+    }
+    @Override
+    public boolean isEmpty() {
+        return this.expressionStack.isEmpty() ;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Expression peek() {
+        return this.expressionStack.peek();
     }
 
     @Override

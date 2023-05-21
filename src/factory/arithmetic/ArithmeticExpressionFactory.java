@@ -1,11 +1,15 @@
 package factory.arithmetic;
 
+import expression.ArithmeticBinaryOperation;
 import expression.ArithmeticConst;
 import expression.ArithmeticExpression;
+import expression.ArithmeticUnaryExpression;
+import expression.operators.OperatorBinaryArith;
+import expression.operators.OperatorUnaryArith;
 import factory.Expression;
 import factory.ExpressionFactory;
 
-public class ArithmeticExpressionFactory implements ExpressionFactory {
+public class ArithmeticExpressionFactory implements ExpressionFactory<ArithmeticExpression> {
 
     /**
      * Concrete Creator
@@ -16,12 +20,28 @@ public class ArithmeticExpressionFactory implements ExpressionFactory {
     }
 
     @Override
-    public ArithmeticExpression createBinaryExpression(Expression exp1, char operator, Expression exp2){
-        return null;
+    public ArithmeticExpression createBinaryExpression(ArithmeticExpression exp1, char operator, ArithmeticExpression exp2){
+        OperatorBinaryArith op = null;
+        for (OperatorBinaryArith operator1 : OperatorBinaryArith.values()) {
+            if (operator1.getChar() == operator) {
+                 op = operator1;
+                 break;
+
+            }
+        }
+        return new ArithmeticBinaryOperation( exp1,  exp2, op);
     }
 
     @Override
-    public ArithmeticExpression createUnaryExpression(char operator, Expression expression) {
-        return null;
+    public ArithmeticExpression createUnaryExpression(char operator, ArithmeticExpression expression) {
+        OperatorUnaryArith op = null;
+        for (OperatorUnaryArith operator1 : OperatorUnaryArith.values()) {
+            if (operator1.getChar() == operator) {
+                op = operator1;
+                break;
+
+            }
+        }
+        return new ArithmeticUnaryExpression(expression , op);
     }
 }

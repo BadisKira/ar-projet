@@ -1,32 +1,30 @@
 package xml.load.save;
 
+import stack.ExpressionStack;
+
 public class XmlConcreteBuilder implements IBuilderXML{
-    /**
-    * Implement the methods defined in the IBuilderXML interface based on your specific XML construction logic.
-    */
 
     /**
-     * @param tagName
+     * @param rootElement
      */
     @Override
-    public void buildTag(String tagName) {
+    public void setRootElement(String rootElement) {
+    }
+
+    /**
+     * @param name
+     * @param value
+     */
+    @Override
+    public void addElement(String name, String value) {
 
     }
 
     /**
-     * @param attributeName
-     * @param attributeValue
+     * @param expressionStack
      */
     @Override
-    public void buildAttribute(String attributeName, String attributeValue) {
-
-    }
-
-    /**
-     * @param content
-     */
-    @Override
-    public void buildContent(String content) {
+    public void buildXml(ExpressionStack expressionStack , String file) {
 
     }
 }

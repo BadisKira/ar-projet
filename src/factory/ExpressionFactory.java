@@ -1,11 +1,11 @@
 package factory;
 
-public interface ExpressionFactory {
+public interface ExpressionFactory <T extends Expression>{
     /**
      *Creator
      *
      * */
     Expression createConstExpression(String value);
-    Expression createBinaryExpression(Expression exp1,char operator, Expression exp2);
-    Expression createUnaryExpression(char operator,Expression expression);
+    Expression createBinaryExpression(T exp1,char operator, T exp2);
+    Expression createUnaryExpression(char operator,T expression);
 }

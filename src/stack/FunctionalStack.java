@@ -67,7 +67,7 @@ public class FunctionalStack  implements ExpressionStack{
             return;
         }else {
             if(strExp.equals(variableForm)) {
-                addExpression(expressionFactory.createVariableExpression(strExp)) ;
+            //    addExpression(expressionFactory.createVariableExpression(strExp)) ;
             } else {
                 System.out.println("Invalid operator.only variable accepted is 'x'");
                 return ;
@@ -92,6 +92,21 @@ public class FunctionalStack  implements ExpressionStack{
      */
     @Override
     public Stack getStack() {
-        return null;
+        return this.expressionStack;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return this.expressionStack.isEmpty() ;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Expression peek() {
+        return this.expressionStack.peek();
+    }
+
+
 }

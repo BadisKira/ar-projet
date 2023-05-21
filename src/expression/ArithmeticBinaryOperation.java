@@ -20,4 +20,9 @@ public class ArithmeticBinaryOperation implements ArithmeticExpression {
     public double getValue() {
         return operator.calculate(expression1,expression2);
     }
+
+    @Override
+    public String toString(){
+        return expression1.toString() +" "+ expression2.toString()+" "+ operator.getChar();
+    }
 }

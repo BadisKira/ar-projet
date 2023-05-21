@@ -15,18 +15,25 @@ public  class Expedid {
     private static final String SAVE_COMMAND = "!save";
     private static final String LOAD_COMMAND = "!load";
     private static final String TYPE_COMMAND = "!type";
+
+    private static final String EMPTY_COMMAND = "";
+
+
+
     private static ExpressionStack expressionStack = null ;
 
     public static void run() {
-        System.out.println("Bonjour, veuillez choisir le type d'expression :");
+        System.out.println("Hello , could you choose the expression type :");
         String input;
 
         while (true) {
             System.out.print("> ");
             input = scanner.nextLine();
-
-            if (input.equals(QUIT_COMMAND)) {
-                System.out.println("Au revoir !");
+            if (input.equals(EMPTY_COMMAND)) {
+                System.out.println(" YOU CAN WRITE SOMETHING IF YOU WANT ");
+            }
+            else if (input.equals(QUIT_COMMAND)) {
+                System.out.println("GOOD BYE !");
                 System.exit(0);
             } else if (input.startsWith(SAVE_COMMAND)) {
                 /**
@@ -52,13 +59,13 @@ public  class Expedid {
     }
 
     private static void handleSaveCommand(String file) {
-        System.out.println("Veuillez fournir un nom de fichier valide. Syntaxe : !save nom_du_fichier");
+        System.out.println("Please provide a valid file name. Syntax: !save file_name\n");
         //  String filename = input.substring(SAVE_COMMAND.length() + 1);
         // saveExpressionToXML(pile, filename);
     }
 
-    private static void handleLoadCommand(String input) {
-        System.out.println("Veuillez fournir un nom de fichier valide. Syntaxe : !load nom_du_fichier");
+    private static void handleLoadCommand(String file) {
+        System.out.println("Please provide a valid file name. Syntax: !load file_name\n");
         //loadExpressionFromXML(pile, filename);
     }
 
@@ -97,9 +104,13 @@ public  class Expedid {
     }
 
     private static void displayExpressionTypes() {
-        System.out.println("[arith]    : Expression arithmétique");
-        System.out.println("[function] : Expression fonctionnelle");
-        System.out.println("[rational] : Expression rationnelle");
+        System.out.println("arith    : Arithmetic expression");
+        System.out.println("function : Functional expression");
+        System.out.println("rational : Rational expression");
+
+
+
+
     }
 
 

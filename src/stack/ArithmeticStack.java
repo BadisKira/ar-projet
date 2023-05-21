@@ -3,6 +3,7 @@ package stack;
 import expression.ArithmeticExpression;
 import expression.operators.OperatorBinaryArith;
 import expression.operators.OperatorUnaryArith;
+import factory.Expression;
 import factory.ExpressionFactory;
 import factory.arithmetic.ArithmeticExpressionFactory;
 
@@ -81,7 +82,19 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
 
 
 
+    @Override
+    public boolean isEmpty() {
+        return this.expressionStack.isEmpty() ;
+    }
 
+    /**
+     * @return
+     */
+    @Override
+    public Expression peek() {
+        return this.expressionStack.peek();
+
+    }
 
     @Override
     public String toString(){
@@ -93,4 +106,7 @@ public class ArithmeticStack implements ExpressionStack<ArithmeticExpression>{
         }
         return str.toString();
     }
+
+
+
 }
